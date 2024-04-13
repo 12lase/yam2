@@ -1,0 +1,57 @@
+
+-- Create S Table with NOT NULL constraints
+CREATE TABLE S (
+    S VARCHAR(4) NOT NULL,
+    SNAME VARCHAR(20) NOT NULL,
+    STATUS INT NOT NULL,
+    CITY VARCHAR(20) NOT NULL,
+    PRIMARY KEY (S)
+);
+
+-- Insert data into S Table
+INSERT INTO S VALUES ('S1', 'Smith', 20, 'London');
+INSERT INTO S VALUES ('S2', 'Jones', 10, 'Paris');
+INSERT INTO S VALUES ('S3', 'Blake', 30, 'Paris');
+INSERT INTO S VALUES ('S4', 'Clark', 20, 'London');
+INSERT INTO S VALUES ('S5', 'Adams', 30, 'Athens');
+
+-- Create P Table with NOT NULL constraints
+CREATE TABLE P (
+    P VARCHAR(4) NOT NULL,
+    PNAME VARCHAR(20) NOT NULL,
+    COLOR VARCHAR(20) NOT NULL,
+    WEIGHT INT NOT NULL,
+    PRIMARY KEY (P)
+);
+
+-- Insert data into P Table
+INSERT INTO P VALUES ('P1', 'Nut', 'Red', 12);
+INSERT INTO P VALUES ('P2', 'Bolt', 'Green', 17);
+INSERT INTO P VALUES ('P3', 'Screw', 'Blue', 17);
+INSERT INTO P VALUES ('P4', 'Screw', 'Red', 14);
+INSERT INTO P VALUES ('P5', 'Cam', 'Blue', 12);
+INSERT INTO P VALUES ('P6', 'Cog', 'Red', 19);
+
+-- Create Supplied P Table with NOT NULL constraints
+CREATE TABLE SP (
+    S VARCHAR(4) NOT NULL,
+    P VARCHAR(4) NOT NULL,
+    QTY INT NOT NULL,
+    PRIMARY KEY (S, P),
+    FOREIGN KEY (S) REFERENCES S(S) ON DELETE RESTRICT,
+    FOREIGN KEY (P) REFERENCES P(P) ON DELETE RESTRICT
+);
+
+-- Insert data into Supplied P Table
+INSERT INTO SP VALUES ('S1', 'P1', 300);
+INSERT INTO SP VALUES ('S1', 'P2', 200);
+INSERT INTO SP VALUES ('S1', 'P3', 400);
+INSERT INTO SP VALUES ('S1', 'P4', 200);
+INSERT INTO SP VALUES ('S1', 'P5', 100);
+INSERT INTO SP VALUES ('S1', 'P6', 100);
+INSERT INTO SP VALUES ('S2', 'P1', 300);
+INSERT INTO SP VALUES ('S2', 'P2', 400);
+INSERT INTO SP VALUES ('S3', 'P2', 200);
+INSERT INTO SP VALUES ('S4', 'P2', 200);
+INSERT INTO SP VALUES ('S4', 'P4', 300);
+INSERT INTO SP VALUES ('S4', 'P5', 400);
